@@ -6,6 +6,7 @@ import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import { Box, Card, Grid, ToggleButton, ToggleButtonGroup } from '@mui/material';
 
+import ChartWidget from '../Widgets/ChartWidget/ChartWidget';
 import NumberWidget from '../Widgets/NumberWidget/NumberWidget';
 
 
@@ -61,7 +62,16 @@ function Dashboard() {
         label: 'additional number data',
         color: 'red',
         iconColor: 'lightBlue',
-      }
+      },
+      {
+        type: 'barchart',
+        label: 'bar chart data',
+      },
+      {
+        type: 'barchart',
+        label: 'bar chart data',
+        direction: 'horizontal'
+      },
     ]
   );
 
@@ -77,6 +87,8 @@ function Dashboard() {
     switch (props.type) {
       case 'number':
         return <NumberWidget { ...props }/>;
+      case 'barchart':
+        return <ChartWidget { ...props } />        
       default:
         return <></>
     }
