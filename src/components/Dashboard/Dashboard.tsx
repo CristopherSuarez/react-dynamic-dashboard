@@ -6,8 +6,10 @@ import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import { Box, Card, Grid, ToggleButton, ToggleButtonGroup } from '@mui/material';
 
+import demoData from '../../config/widgets/demo.json';
 import ChartWidget from '../Widgets/ChartWidget/ChartWidget';
 import NumberWidget from '../Widgets/NumberWidget/NumberWidget';
+
 
 
 // Defines the structure for a view mode configuration
@@ -44,36 +46,7 @@ function Dashboard() {
   // component states
   const [viewMode, setViewMode] = useState<number>(ViewMode.LIST.value);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [widgets] = useState<Array<any>>(
-    [
-      {
-        type: 'number',
-        numberValue: 700,
-        label: 'additional number data',
-      },
-      {
-        type: 'number',
-        numberValue: 6500,
-        label: 'additional number data',
-      },
-      {
-        type: 'number',
-        numberValue: 8500.66,
-        label: 'additional number data',
-        color: 'red',
-        iconColor: 'lightBlue',
-      },
-      {
-        type: 'barchart',
-        label: 'bar chart data',
-      },
-      {
-        type: 'barchart',
-        label: 'bar chart data',
-        direction: 'horizontal'
-      },
-    ]
-  );
+  const [widgets] = useState<Array<any>>([ ...demoData ]);
 
   // component handlers/functions
   const handleSetViewMode = (_event: React.MouseEvent<HTMLElement>, nextView: number) => {

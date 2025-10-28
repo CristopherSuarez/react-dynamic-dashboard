@@ -1,0 +1,33 @@
+[
+  {
+    "type": "number",
+    "numberValue": 700,
+    "label": "additional number data"
+  },
+  {
+    "type": "number",
+    "numberValue": 6500,
+    "label": "revenue"
+  },
+  {
+    "type": "number",
+    "numberValue": 8500.66,
+    "label": "total profit",
+    "color": "red",
+    "iconColor": "lightBlue"
+  },
+  {
+    "type": "barchart",
+    "label": "bar chart data"
+  },
+  {
+    "type": "barchart",
+    "label": "bar chart data",
+    "direction": "horizontal",
+    "iconColor": "purple"
+  },
+  {
+    "type": "barchart",
+    "label": "bar chart testing label long long label"
+  }
+]
