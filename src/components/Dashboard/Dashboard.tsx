@@ -1,9 +1,12 @@
 import { useState } from 'react';
 
+
 import ViewListIcon from '@mui/icons-material/ViewList';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import { Box, Card, Grid, ToggleButton, ToggleButtonGroup } from '@mui/material';
+
+import NumberWidget from '../Widgets/NumberWidget/NumberWidget';
 
 
 // Defines the structure for a view mode configuration
@@ -26,7 +29,7 @@ const ViewMode: Record<string, ViewModeType> = {
   MODULE: {
     label: 'module',
     icon: <ViewModuleIcon />,
-    value: 6,
+    value: 4,
   },
   QUILT: {
     label: 'quilt',
@@ -39,7 +42,28 @@ const ViewMode: Record<string, ViewModeType> = {
 function Dashboard() {
   // component states
   const [viewMode, setViewMode] = useState<number>(ViewMode.LIST.value);
-  const [widgets] = useState<string[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [widgets] = useState<Array<any>>(
+    [
+      {
+        type: 'number',
+        numberValue: 700,
+        label: 'additional number data',
+      },
+      {
+        type: 'number',
+        numberValue: 6500,
+        label: 'additional number data',
+      },
+      {
+        type: 'number',
+        numberValue: 8500.66,
+        label: 'additional number data',
+        color: 'red',
+        iconColor: 'lightBlue',
+      }
+    ]
+  );
 
   // component handlers/functions
   const handleSetViewMode = (_event: React.MouseEvent<HTMLElement>, nextView: number) => {
@@ -47,6 +71,16 @@ function Dashboard() {
       setViewMode(nextView)
     }
   };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const getWidget = (props: any): any => {
+    switch (props.type) {
+      case 'number':
+        return <NumberWidget { ...props }/>;
+      default:
+        return <></>
+    }
+  }
 
   return (
     <>
@@ -73,10 +107,11 @@ function Dashboard() {
         </ToggleButtonGroup>
          {/* --- Grid of widgets --- */}
         <Grid container spacing={2}>
-          {widgets.map((widget, idx) =>
+          {widgets.map((props, idx) =>
             <Grid key={idx} size={viewMode}>
               <Card variant="outlined" sx={{ padding: 2 }}>
-                {widget}
+                {getWidget(props)}
+                {/* <CardContent/> */}
               </Card>
             </Grid>
           )}
