@@ -4,11 +4,12 @@ import { useState } from 'react';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
-import { Box, Card, Grid, ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { Box, Grid, ToggleButton, ToggleButtonGroup } from '@mui/material';
 
 import demoJson from '../../config/widgets/demo.json';
 import { fetchCustomFakerData, type FakerSchema } from '../../services/fakerService';
 import EmptyPlaceHolder from '../EmptyPlaceHolder/EmptyPlaceHolder';
+import CardWidget from '../Widgets/CardWidget/CardWidget';
 import ChartWidget from '../Widgets/ChartWidget/ChartWidget';
 import NumberWidget from '../Widgets/NumberWidget/NumberWidget';
 
@@ -111,12 +112,11 @@ function Dashboard() {
       <Grid container spacing={2}>
         {widgets.map((widget, idx) => (
           <Grid key={idx} size={viewMode}>
-            <Card
-              variant="outlined"
-              sx={{ padding: 2, height: '100%' }}
+            <CardWidget
+              title={widget.label}
             >
               {renderWidget(widget, idx)}
-            </Card>
+            </CardWidget>
           </Grid>
         ))}
       </Grid>
