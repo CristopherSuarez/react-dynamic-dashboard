@@ -52,7 +52,7 @@ interface WidgetJsonBody {
   data?: any[];
 }
 
-function Dashboard() {
+function DemoDashboard() {
   const [viewMode, setViewMode] = useState<number>(ViewMode.LIST.value);
   const [widgets] = useState<WidgetJsonBody[]>([...demoJson] as unknown as WidgetJsonBody[]);
 
@@ -124,4 +124,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default DemoDashboard;
