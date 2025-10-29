@@ -6,15 +6,23 @@ import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined';
 import { Tabs, Tab, Box, useTheme, useMediaQuery } from '@mui/material';
 
 import TabPanel from './TabPanel';
+import demoData from '../../config/widgets/demo.json';
+import type { WidgetJsonBody } from '../common/types';
 import Dashboard from '../Dashboards/Dashboard';
-import DemoDashboard from '../Dashboards/DemoDashboard';
+import DashboardPanel from '../Dashboards/DashboardPanel';
 import EmptyPlaceHolder from '../EmptyPlaceHolder/EmptyPlaceHolder';
 
 const TAB_CONFIG = [
   {
     label: 'Demo',
     icon: <BarChartOutlinedIcon />,
-    content: <Dashboard title='Demo'><DemoDashboard/></Dashboard>,
+    content: 
+      <DashboardPanel title='Demo'>
+        <Dashboard
+          editable={false}
+          defaultData={demoData as unknown as WidgetJsonBody[]}
+        />
+      </DashboardPanel>,
   },
   {
     label: 'Overview',
@@ -24,7 +32,10 @@ const TAB_CONFIG = [
   {
     label: 'My Dashboard',
     icon: <AddchartOutlinedIcon />,
-    content: <EmptyPlaceHolder customMessage="No dashboard implemented" />,
+    content:
+      <DashboardPanel title='My Dashboard'>
+        <Dashboard editable={true}/>
+      </DashboardPanel>,
   },
 ];
 

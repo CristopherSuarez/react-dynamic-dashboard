@@ -16,7 +16,7 @@ interface GenericModalProps {
   children: React.ReactNode;
 }
 
-const GenericModal: React.FC<GenericModalProps> = ({ open, onClose, title, children }) => {
+const GenericModal = ({ open, onClose, title, children }: GenericModalProps) => {
   const theme = useTheme();
 
   return (
