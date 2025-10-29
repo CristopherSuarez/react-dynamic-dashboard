@@ -7,7 +7,7 @@ import { Tabs, Tab, Box, useTheme, useMediaQuery } from '@mui/material';
 
 import TabPanel from './TabPanel';
 import demoData from '../../config/widgets/demo.json';
-import type { WidgetJsonBody } from '../common/types';
+import type { WidgetProps } from '../common/types';
 import Dashboard from '../Dashboards/Dashboard';
 import DashboardPanel from '../Dashboards/DashboardPanel';
 import EmptyPlaceHolder from '../EmptyPlaceHolder/EmptyPlaceHolder';
@@ -20,7 +20,7 @@ const TAB_CONFIG = [
       <DashboardPanel title='Demo'>
         <Dashboard
           editable={false}
-          defaultData={demoData as unknown as WidgetJsonBody[]}
+          defaultData={demoData as unknown as WidgetProps[]}
         />
       </DashboardPanel>,
   },
