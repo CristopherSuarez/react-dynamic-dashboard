@@ -1,5 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const FakerResources = {
+export const FakerResources = {
   ADDRESSES: 'addresses',
   BOOKS: 'books',
   COMPANIES: 'companies',
@@ -10,6 +9,9 @@ const FakerResources = {
   PRODUCTS: 'products',
   TEXTS: 'texts',
   USERS: 'users',
+
+  // Custom endpoint to query params
+  CUSTOM: 'custom',
 } as const;
 
 export type FakerResourceType = (typeof FakerResources)[keyof typeof FakerResources];
