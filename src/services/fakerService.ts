@@ -1,10 +1,10 @@
-import { FakerResources } from './fakerResources';
+import { FakerResources, type SimpleFakerType } from './fakerResources';
 
 const BASE_URL = 'https://fakerapi.it/api/v1';
 
 export interface FakerSchema {
   quantity?: number;
-  fields: Record<string, string>;
+  fields: Record<string, SimpleFakerType>;
 }
 
 /**
