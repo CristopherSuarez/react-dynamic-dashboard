@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 
 import GenericModal from './GenericModal';
+import { SIMPLE_FAKER_TYPES, type SimpleFakerType } from '../../services/fakerResources';
 import type { WidgetProps } from '../common/types';
 
 interface ImportWidgetModalProps {
@@ -39,9 +40,23 @@ export default function ImportWidgetModal({ open, onClose, onImport }: ImportWid
 
         const widgetsArray = Array.isArray(json) ? json : [json];
 
-        const isValid = widgetsArray.every(w =>
-          'label' in w && 'type' in w && ('query' in w || 'data' in w)
-        );
+        const isValid = widgetsArray.every(widget => {
+          // Required properties field validation
+          if (!widget.label || !widget.type || !widget.query?.fields) {
+            console.warn('Formato no válido: falta label, type o query.fields');
+            return false;
+          }
+
+          // Field types validation
+          const fieldValues = Object.values(widget.query.fields);
+          const allTypesValid = fieldValues.every(val => SIMPLE_FAKER_TYPES.includes(val as SimpleFakerType));
+
+          if (!allTypesValid) {
+            console.warn(`Formato no válido: alguno de los campos de ${widget.label} no es un tipo permitido`);
+          }
+
+          return allTypesValid;
+        });
 
         if (!isValid) throw new Error('Invalid widget structure');
 

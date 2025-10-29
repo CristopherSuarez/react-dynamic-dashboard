@@ -1,9 +1,10 @@
 [
   {
+    "id": "4a0d09ac-845f-4c62-8c81-9c8e529a5b2f",
     "label": "Customers quantity",
     "type": "barChart",
     "query": {
-      "quantity": 3,
+      "quantity": 5,
       "fields": {
         "group": "word",
         "value1": "number",
@@ -13,26 +14,301 @@
     }
   },
   {
-    "label": "Actual volume",
-    "type": "barChart",
-    "direction": "horizontal",
+    "id": "f4b64c8e-d0e1-44c9-9c57-928baef9f615",
+    "label": "Monthly Revenue",
+    "type": "lineChart",
     "query": {
-      "quantity": 3,
+      "quantity": 12,
       "fields": {
         "group": "word",
-        "value1": "number",
-        "value2": "number",
-        "value3": "number"
+        "revenue": "number",
+        "profit": "number"
       }
     }
   },
   {
+    "id": "2d6d17f5-b1cc-4d22-a932-fb25d3bb9c47",
     "label": "Total cost per year",
     "type": "number",
     "query": {
-      "quantity": 58,
+      "quantity": 1,
       "fields": {
         "quantity": "number"
+      }
+    }
+  },
+  {
+    "id": "e61727c2-9962-4e09-b764-617c768aa2cc",
+    "label": "Top Products",
+    "type": "pieChart",
+    "query": {
+      "quantity": 5,
+      "fields": {
+        "group": "word",
+        "sales": "number"
+      }
+    }
+  },
+  {
+    "id": "27a3a6c2-d4e5-46d3-a199-bcf4099d25f4",
+    "label": "Website Visits",
+    "type": "lineChart",
+    "query": {
+      "quantity": 30,
+      "fields": {
+        "group": "word",
+        "visits": "number"
+      }
+    }
+  },
+  {
+    "id": "cf3df9a9-7b20-4f37-9f31-fc753e44dc62",
+    "label": "Customer Satisfaction",
+    "type": "barChart",
+    "query": {
+      "quantity": 4,
+      "fields": {
+        "group": "word",
+        "rating": "number"
+      }
+    }
+  },
+  {
+    "id": "a8b4e3a1-4428-4936-bb45-36fba6ef964c",
+    "label": "Refunds per Month",
+    "type": "lineChart",
+    "query": {
+      "quantity": 12,
+      "fields": {
+        "group": "word",
+        "refunds": "number"
+      }
+    }
+  },
+  {
+    "id": "be42863e-12b5-479b-a1b3-4a8e5f62a9fd",
+    "label": "Orders by Region",
+    "type": "pieChart",
+    "query": {
+      "quantity": 5,
+      "fields": {
+        "group": "word",
+        "orders": "number"
+      }
+    }
+  },
+  {
+    "id": "a83b5e4e-c2d0-48ac-8c63-3f3ffbbfbcdb",
+    "label": "Active Users",
+    "type": "number",
+    "query": {
+      "quantity": 1,
+      "fields": {
+        "users": "number"
+      }
+    }
+  },
+  {
+    "id": "5f9e8191-24b0-4f5b-9c89-71df70bdfb45",
+    "label": "Top Categories",
+    "type": "pieChart",
+    "query": {
+      "quantity": 6,
+      "fields": {
+        "group": "word",
+        "sales": "number"
+      }
+    }
+  },
+  {
+    "id": "0d8a0b3f-3ff2-45d7-93d2-0d89c3d776b0",
+    "label": "New Signups",
+    "type": "lineChart",
+    "query": {
+      "quantity": 30,
+      "fields": {
+        "group": "word",
+        "signups": "number"
+      }
+    }
+  },
+  {
+    "id": "e504b457-1dc7-404b-9828-94d52a20a75d",
+    "label": "Monthly Expenses",
+    "type": "lineChart",
+    "query": {
+      "quantity": 12,
+      "fields": {
+        "group": "word",
+        "rent": "number",
+        "utilities": "number",
+        "marketing": "number"
+      }
+    }
+  },
+  {
+    "id": "c67f9c3e-14d7-49ab-8015-d9c21dd52f9f",
+    "label": "Sales per Employee",
+    "type": "barChart",
+    "query": {
+      "quantity": 5,
+      "fields": {
+        "group": "word",
+        "sales": "number"
+      }
+    }
+  },
+  {
+    "id": "64f81b12-9f9b-4e6a-bcb3-c982e0a2c15e",
+    "label": "Returned Products",
+    "type": "barChart",
+    "query": {
+      "quantity": 5,
+      "fields": {
+        "group": "word",
+        "quantity": "number"
+      }
+    }
+  },
+  {
+    "id": "6b3e7cf8-4310-4266-b95e-ff54de927e9a",
+    "label": "Profit Margin",
+    "type": "lineChart",
+    "query": {
+      "quantity": 12,
+      "fields": {
+        "group": "word",
+        "margin": "number"
+      }
+    }
+  },
+  {
+    "id": "e847fb62-1b5b-4675-a0dc-03fcb44e4cf0",
+    "label": "Top Customers",
+    "type": "pieChart",
+    "query": {
+      "quantity": 5,
+      "fields": {
+        "group": "word",
+        "orders": "number"
+      }
+    }
+  },
+  {
+    "id": "2c6a7af1-1b7b-4a5c-97d9-f5e3db3f8d32",
+    "label": "Monthly Traffic Sources",
+    "type": "pieChart",
+    "query": {
+      "quantity": 4,
+      "fields": {
+        "group": "word",
+        "visits": "number"
+      }
+    }
+  },
+  {
+    "id": "fae6df02-b6f1-4ec3-bc52-8b6e3c5c9012",
+    "label": "Daily Orders",
+    "type": "lineChart",
+    "query": {
+      "quantity": 30,
+      "fields": {
+        "group": "word",
+        "orders": "number"
+      }
+    }
+  },
+  {
+    "id": "735f70e9-7c58-44b1-b622-49a00c11c733",
+    "label": "Completed Tasks",
+    "type": "barChart",
+    "query": {
+      "quantity": 6,
+      "fields": {
+        "group": "word",
+        "tasks": "number"
+      }
+    }
+  },
+  {
+    "id": "b7e22371-81d3-44f0-a5b4-888e198ac87d",
+    "label": "Average Order Value",
+    "type": "number",
+    "query": {
+      "quantity": 1,
+      "fields": {
+        "value": "number"
+      }
+    }
+  },
+  {
+    "id": "cd32a76c-dbed-4d3c-b890-6d3f6a134e9f",
+    "label": "Customer Age Distribution",
+    "type": "pieChart",
+    "query": {
+      "quantity": 5,
+      "fields": {
+        "group": "word",
+        "count": "number"
+      }
+    }
+  },
+  {
+    "id": "a17a2198-3e3d-4c91-8df8-29ec1a38fd9c",
+    "label": "Website Bounce Rate",
+    "type": "lineChart",
+    "query": {
+      "quantity": 30,
+      "fields": {
+        "group": "word",
+        "bounceRate": "number"
+      }
+    }
+  },
+  {
+    "id": "af5019b2-4b6b-4764-91c5-c8932b3c411d",
+    "label": "Monthly Discounts",
+    "type": "barChart",
+    "query": {
+      "quantity": 12,
+      "fields": {
+        "group": "word",
+        "discounts": "number"
+      }
+    }
+  },
+  {
+    "id": "4a2e7f6e-1f19-4ee3-bf71-caa44582a0d5",
+    "label": "Products in Stock",
+    "type": "number",
+    "query": {
+      "quantity": 1,
+      "fields": {
+        "quantity": "number"
+      }
+    }
+  },
+  {
+    "id": "d2d882ac-5a6f-4c91-8f6e-31a6e5e63e74",
+    "label": "Employee Performance",
+    "type": "barChart",
+    "query": {
+      "quantity": 5,
+      "fields": {
+        "group": "word",
+        "score": "number"
+      }
+    }
+  },
+  {
+    "id": "f83f7243-09a7-43b8-8e35-fbe68f9ed3f4",
+    "label": "Monthly Newsletter Opens",
+    "type": "lineChart",
+    "query": {
+      "quantity": 12,
+      "fields": {
+        "group": "word",
+        "opens": "number"
       }
     }
   }

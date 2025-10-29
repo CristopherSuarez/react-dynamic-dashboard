@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid';
 
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
-import { Box, Button, Grid, ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { Box, Button, Grid, ToggleButton, ToggleButtonGroup, useMediaQuery, useTheme } from '@mui/material';
 
 import { ViewMode, type ViewModeType } from '../../config/viewMode';
 import { useWidgets } from '../../context/WidgetsContext';
@@ -15,6 +15,7 @@ import ViewWidgetConfigurationModal from '../Modal/ViewWidgetConfigurationModal'
 import CardWidget from '../Widgets/CardWidget/CardWidget';
 import ChartWidget from '../Widgets/ChartWidget/ChartWidget';
 import NumberWidget from '../Widgets/NumberWidget/NumberWidget';
+import PieChartWidget from '../Widgets/PieChartWidget/PieChartWidget';
 
 
 interface Dashboard {
@@ -35,13 +36,21 @@ function Dashboard({ editable = true, defaultData }: Dashboard) {
     if (nextView !== null) setViewMode(nextView);
   };
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down(1000));
+
   // Render widget depending on type
   const renderWidget = (widget: WidgetProps) => {
     switch (widget.type) {
       case 'number':
         return <NumberWidget {...widget} />;
+
       case 'barChart':
-        return <ChartWidget {...widget}/>;
+        return <ChartWidget {...widget} />;
+
+      case 'pieChart':
+        return <PieChartWidget {...widget} />;
+
       default:
         return <EmptyPlaceHolder customMessage="No widget found" />;
     }
@@ -82,7 +91,7 @@ function Dashboard({ editable = true, defaultData }: Dashboard) {
         {
           widgets.length ?
             widgets.map((widget, idx) => (
-              <Grid key={idx} size={viewMode}>
+              <Grid key={idx} size={isMobile ? 12 : viewMode}>
                 <CardWidget
                   title={widget.label}
                   actions={
