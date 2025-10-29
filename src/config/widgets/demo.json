@@ -1,33 +1,39 @@
 [
   {
-    "type": "number",
-    "numberValue": 700,
-    "label": "additional number data"
+    "label": "Customers quantity",
+    "type": "barChart",
+    "query": {
+      "quantity": 3,
+      "fields": {
+        "group": "word",
+        "value1": "number",
+        "value2": "number",
+        "value3": "number"
+      }
+    }
   },
   {
-    "type": "number",
-    "numberValue": 6500,
-    "label": "revenue"
-  },
-  {
-    "type": "number",
-    "numberValue": 8500.66,
-    "label": "total profit",
-    "color": "red",
-    "iconColor": "lightBlue"
-  },
-  {
-    "type": "barchart",
-    "label": "bar chart data"
-  },
-  {
-    "type": "barchart",
-    "label": "bar chart data",
+    "label": "Actual volume",
+    "type": "barChart",
     "direction": "horizontal",
-    "iconColor": "purple"
+    "query": {
+      "quantity": 3,
+      "fields": {
+        "group": "word",
+        "value1": "number",
+        "value2": "number",
+        "value3": "number"
+      }
+    }
   },
   {
-    "type": "barchart",
-    "label": "bar chart testing label long long label"
+    "label": "Total cost per year",
+    "type": "number",
+    "query": {
+      "quantity": 58,
+      "fields": {
+        "quantity": "number"
+      }
+    }
   }
 ]
