@@ -6,14 +6,15 @@ import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined';
 import { Tabs, Tab, Box, useTheme, useMediaQuery } from '@mui/material';
 
 import TabPanel from './TabPanel';
-import Dashboard from '../Dashboard/Dashboard';
+import Dashboard from '../Dashboards/Dashboard';
+import DemoDashboard from '../Dashboards/DemoDashboard';
 import EmptyPlaceHolder from '../EmptyPlaceHolder/EmptyPlaceHolder';
 
 const TAB_CONFIG = [
   {
     label: 'Demo',
     icon: <BarChartOutlinedIcon />,
-    content: <Dashboard />,
+    content: <Dashboard title='Demo'><DemoDashboard/></Dashboard>,
   },
   {
     label: 'Overview',
