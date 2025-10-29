@@ -23,7 +23,7 @@ function parseFakerBarChartData(data: Record<string, any>[]) {
   return { xAxis, series };
 }
 
-// Bar chart componente
+// Bar chart component
 function ChartWidget(widgetProps: WidgetProps) {
   const { label, direction = 'vertical', query } = widgetProps;
 

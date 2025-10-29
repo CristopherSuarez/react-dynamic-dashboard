@@ -62,7 +62,6 @@ export default function ImportWidgetModal({ open, onClose, onImport }: ImportWid
     if (parsedJson) {
       onImport(parsedJson);
 
-      // Limpiar todo después de importar
       setFileName('');
       setFileContent('');
       setParsedJson(null);
