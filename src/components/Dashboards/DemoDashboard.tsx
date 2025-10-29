@@ -1,14 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
-import { Box, Grid, ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { Box, Grid, IconButton, styled, TextField, ToggleButton, ToggleButtonGroup } from '@mui/material';
 
 import demoJson from '../../config/widgets/demo.json';
 import { fetchCustomFakerData, type FakerSchema } from '../../services/fakerService';
 import EmptyPlaceHolder from '../EmptyPlaceHolder/EmptyPlaceHolder';
+import GenericModal from '../Modal/GenericModal';
 import CardWidget from '../Widgets/CardWidget/CardWidget';
 import ChartWidget from '../Widgets/ChartWidget/ChartWidget';
 import NumberWidget from '../Widgets/NumberWidget/NumberWidget';
@@ -43,6 +45,13 @@ const ViewMode: Record<string, ViewModeType> = {
   },
 } as const;
 
+const NoFocusIconButton = styled(IconButton)({
+  '&:focus': {
+    outline: 'none',
+    boxShadow: 'none',
+  },
+});
+
 
 interface WidgetJsonBody {
   label: string;
@@ -53,8 +62,12 @@ interface WidgetJsonBody {
 }
 
 function DemoDashboard() {
+  const [dialogData, setDialogData] = useState({ open: false, data: {} });
   const [viewMode, setViewMode] = useState<number>(ViewMode.LIST.value);
   const [widgets] = useState<WidgetJsonBody[]>([...demoJson] as unknown as WidgetJsonBody[]);
+
+  const handleOpen = (widget: WidgetJsonBody) => setDialogData({ open: true, data: widget });
+const handleClose = () => setDialogData({ open: false, data: {} });
 
   const handleSetViewMode = (_: React.MouseEvent<HTMLElement>, nextView: number) => {
     if (nextView !== null) setViewMode(nextView);
@@ -114,12 +127,44 @@ function DemoDashboard() {
           <Grid key={idx} size={viewMode}>
             <CardWidget
               title={widget.label}
+              actions={
+                [
+                  <NoFocusIconButton
+                    key={`icon-${idx}`}
+                    onClick={() => handleOpen(widget)}
+                    disableRipple={false}
+                  >
+                    <RemoveRedEyeOutlinedIcon />
+                  </NoFocusIconButton>
+                ]
+              }
             >
               {renderWidget(widget, idx)}
             </CardWidget>
           </Grid>
         ))}
       </Grid>
+      <GenericModal open={dialogData.open} onClose={handleClose} title="Widget Configuration">
+         <TextField
+            multiline
+            fullWidth
+            minRows={12}
+            value={JSON.stringify(dialogData.data, null, 2)}
+            slotProps={{
+              input: {
+                readOnly: true,
+                style: {
+                  fontFamily: 'monospace',
+                  backgroundColor: '#1e1e1e',
+                  color: '#d4d4d4',
+                  borderRadius: 4,
+                  padding: '8px',
+                },
+              }
+            }}
+            variant="outlined"
+          />
+      </GenericModal>
     </Box>
   );
 }
