@@ -1,5 +1,5 @@
 import NumbersOutlinedIcon from '@mui/icons-material/NumbersOutlined';
-import { Box, Stack, Typography } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 
 interface NumberWidgetProps {
   label: string;
@@ -11,31 +11,26 @@ interface NumberWidgetProps {
 
 function NumberWidget(props: NumberWidgetProps) {
   return (
-    <Stack spacing={2} height="100%">
-      <Box
-        color="gray"
-        display="flex"
-        alignItems="center"
-        gap={1}
+    <Stack
+      direction="row"
+      alignItems="center"
+      justifyContent="center"
+      spacing={1}
+      height="100%"
+    >
+      <NumbersOutlinedIcon
+        sx={{
+          fontSize: '2.5rem',
+          color: props.iconColor ?? props.color ?? 'black',
+        }}
+      />
+      <Typography
+        color={props.color ?? 'black'}
+        variant="h2"
+        sx={{ fontWeight: 500 }}
       >
-        <NumbersOutlinedIcon
-          style={{ color: props.iconColor ?? 'black' }}
-        />
-        {props.label}
-      </Box>
-      <Box
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        height="100%"
-      >
-        <Typography
-          color={props.color ?? 'black'}
-          variant="h2"
-        >
-          {props.data.length}
-        </Typography>
-      </Box>
+        {props.data.length}
+      </Typography>
     </Stack>
   );
 }

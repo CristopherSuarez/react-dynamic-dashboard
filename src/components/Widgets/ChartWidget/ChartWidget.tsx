@@ -1,5 +1,3 @@
-import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined';
-import { Box, Stack } from '@mui/material';
 import { BarChart } from '@mui/x-charts';
 
 import EmptyPlaceHolder from '../../EmptyPlaceHolder/EmptyPlaceHolder';
@@ -30,32 +28,18 @@ function parseFakerBarChartData(data: any[]) {
 
 // BarChart component
 function ChartWidget(props: ChartWidgetProps) {
-  console.log(props.data);
   const { xAxis, series } = parseFakerBarChartData(props.data ?? []);
+  if (props.data?.length === 0) {
+    return <EmptyPlaceHolder />
+  }
+
   return (
-    <Box>
-      <Stack spacing={2}>
-        <Box
-          color="gray"
-          display="flex"
-          alignItems="center"
-          gap={1}
-        >
-          <BarChartOutlinedIcon style={{ color: props.iconColor ?? 'black' }} />
-          {props.label}
-        </Box>
-        {
-          props.data?.length === 0
-            ? <EmptyPlaceHolder />
-            : <BarChart
-                xAxis={[{ data: xAxis }]}
-                series={series}
-                height={300}
-                layout={props.direction ?? 'vertical'}
-              />
-        }
-      </Stack>
-    </Box>
+    <BarChart
+      xAxis={[{ data: xAxis }]}
+      series={series}
+      height={300}
+      layout={props.direction ?? 'vertical'}
+    />
   );
 }
 
