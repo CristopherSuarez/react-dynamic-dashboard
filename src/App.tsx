@@ -1,19 +1,26 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-import { Box, Typography } from '@mui/material'
+import { Box } from '@mui/material'
 
-import Dashboard from './components/Dashboard/Dashboard'
+import DashboardTabs from './components/DashboardTabs/DashboardTabs'
 
 const queryClient = new QueryClient()
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-dvh w-dvw bg-gray-200 p-4">
-        <Box marginBlock={3}>
-          <Typography>React Dynamic Dashboard</Typography></Box>
-        <Dashboard />
-      </div>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: '100vh',
+          width: '100vw',
+          bgcolor: '#DCE3F0',
+          transition: 'background-color 0.3s ease',
+        }}
+      >
+        <DashboardTabs/>
+      </Box>
     </QueryClientProvider>
   )
 }
