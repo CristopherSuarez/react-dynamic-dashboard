@@ -1,9 +1,11 @@
 import type { FakerSchema } from '../../services/fakerService';
 
-export interface WidgetJsonBody {
+export interface WidgetProps {
+  id?: unknown;
   label: string;
+  direction?: 'horizontal' | 'vertical';
   type: string;
-  query?: FakerSchema;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  data?: any[];
+  color: string;
+  iconColor: string;
+  query: FakerSchema;
 }

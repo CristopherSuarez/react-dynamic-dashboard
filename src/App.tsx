@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Box } from '@mui/material'
 
 import DashboardTabs from './components/DashboardTabs/DashboardTabs'
+import { WidgetsProvider } from './context/WidgetsContext'
 
 const queryClient = new QueryClient()
 
@@ -19,7 +20,9 @@ function App() {
           transition: 'background-color 0.3s ease',
         }}
       >
-        <DashboardTabs/>
+        <WidgetsProvider>
+          <DashboardTabs/>
+        </WidgetsProvider>
       </Box>
     </QueryClientProvider>
   )

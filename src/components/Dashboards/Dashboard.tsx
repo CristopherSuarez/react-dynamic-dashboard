@@ -1,31 +1,34 @@
-import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
+import { v4 as uuid } from 'uuid';
 
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
-import { Box, Button, Grid, TextField, ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { Box, Button, Grid, ToggleButton, ToggleButtonGroup } from '@mui/material';
 
 import { ViewMode, type ViewModeType } from '../../config/viewMode';
-import { fetchCustomFakerData } from '../../services/fakerService';
+import { useWidgets } from '../../context/WidgetsContext';
 import { NoFocusIconButton } from '../common/NoFocusIconButton';
-import type { WidgetJsonBody } from '../common/types';
+import type { WidgetProps } from '../common/types';
 import EmptyPlaceHolder from '../EmptyPlaceHolder/EmptyPlaceHolder';
-import GenericModal from '../Modal/GenericModal';
+import ImportWidgetModal from '../Modal/ImportWidgetModal';
+import ViewWidgetConfigurationModal from '../Modal/ViewWidgetConfigurationModal';
 import CardWidget from '../Widgets/CardWidget/CardWidget';
 import ChartWidget from '../Widgets/ChartWidget/ChartWidget';
 import NumberWidget from '../Widgets/NumberWidget/NumberWidget';
 
+
 interface Dashboard {
   editable?: boolean;
-  defaultData?: WidgetJsonBody[];
+  defaultData?: WidgetProps[];
 }
 
-function Dashboard({ editable = true, defaultData = [] }: Dashboard) {
-  const [dialogData, setDialogData] = useState({ open: false, data: {} });
+function Dashboard({ editable = true, defaultData }: Dashboard) {
+  const [dialogData, setDialogData] = useState<{open: boolean; data: Partial<WidgetProps>}>({ open: false, data: {} });
+  const [importModalOpen, setImportModalOpen] = useState(false);
   const [viewMode, setViewMode] = useState<number>(ViewMode.LIST.value);
-  const [widgets] = useState<WidgetJsonBody[]>(defaultData as WidgetJsonBody[]);
+  const { widgets, addWidgets } = useWidgets(defaultData);
 
-  const handleOpen = (widget: WidgetJsonBody) => setDialogData({ open: true, data: widget });
+  const handleOpen = (widget: WidgetProps) => setDialogData({ open: true, data: widget });
   const handleClose = () => setDialogData({ open: false, data: {} });
 
   const handleSetViewMode = (_: React.MouseEvent<HTMLElement>, nextView: number) => {
@@ -33,29 +36,12 @@ function Dashboard({ editable = true, defaultData = [] }: Dashboard) {
   };
 
   // Render widget depending on type
-  const renderWidget = (widget: WidgetJsonBody, idx: number) => {
-    const queryKey = ['widget', idx];
-
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { data = [], isFetching, error } = useQuery({
-      queryKey,
-      queryFn: async () => {
-        if (widget.data) return widget.data;
-        if (widget.query) return await fetchCustomFakerData(widget.query);
-        return [];
-      },
-      staleTime: 5 * 60 * 1000,
-      refetchOnWindowFocus: false,
-    });
-
-    if (error) return <EmptyPlaceHolder customMessage="Error loading data" />;
-    if (isFetching) return <EmptyPlaceHolder customMessage="Loading..." />;
-
+  const renderWidget = (widget: WidgetProps) => {
     switch (widget.type) {
       case 'number':
-        return <NumberWidget {...widget} data={data} />;
+        return <NumberWidget {...widget} />;
       case 'barChart':
-        return <ChartWidget {...widget} data={data} />;
+        return <ChartWidget {...widget}/>;
       default:
         return <EmptyPlaceHolder customMessage="No widget found" />;
     }
@@ -79,7 +65,17 @@ function Dashboard({ editable = true, defaultData = [] }: Dashboard) {
             <Icon/>
           </ToggleButton>
         ))}
-        {editable && <Button variant="contained" color="success" endIcon={<FileUploadOutlinedIcon />}>import widget</Button>}
+        {
+          editable &&
+            <Button
+              variant="contained"
+              color="success"
+              endIcon={<FileUploadOutlinedIcon />}
+              onClick={() => setImportModalOpen(true)}
+            >
+              import widget
+            </Button>
+        }
       </ToggleButtonGroup>
 
       <Grid container spacing={2}>
@@ -101,7 +97,7 @@ function Dashboard({ editable = true, defaultData = [] }: Dashboard) {
                     ]
                   }
                 >
-                  {renderWidget(widget, idx)}
+                  {renderWidget(widget)}
                 </CardWidget>
               </Grid>
             )) :
@@ -110,27 +106,19 @@ function Dashboard({ editable = true, defaultData = [] }: Dashboard) {
             </Grid>
         }
       </Grid>
-      <GenericModal open={dialogData.open} onClose={handleClose} title="Widget Configuration">
-         <TextField
-            multiline
-            fullWidth
-            minRows={12}
-            value={JSON.stringify(dialogData.data, null, 2)}
-            slotProps={{
-              input: {
-                readOnly: true,
-                style: {
-                  fontFamily: 'monospace',
-                  backgroundColor: '#1e1e1e',
-                  color: '#d4d4d4',
-                  borderRadius: 4,
-                  padding: '8px',
-                },
-              }
-            }}
-            variant="outlined"
-          />
-      </GenericModal>
+      <ViewWidgetConfigurationModal
+        open={dialogData.open}
+        handleClose={handleClose}
+        data={dialogData.data}
+      />
+      <ImportWidgetModal
+        open={importModalOpen}
+        onClose={() => setImportModalOpen(false)}
+        onImport={(newWidgets) => {
+          const withIds = newWidgets.map(w => ({ ...w, id: w.id ?? uuid() }));
+          addWidgets(withIds);
+        }}
+      />
     </Box>
   );
 }

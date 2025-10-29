@@ -1,15 +1,27 @@
+import { useQuery } from '@tanstack/react-query';
+
 import NumbersOutlinedIcon from '@mui/icons-material/NumbersOutlined';
 import { Stack, Typography } from '@mui/material';
 
-interface NumberWidgetProps {
-  label: string;
-  color?: string;
-  iconColor?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  data: Array<Record<string, any>>
-}
+import { fetchCustomFakerData } from '../../../services/fakerService';
+import type { WidgetProps } from '../../common/types';
+import EmptyPlaceHolder from '../../EmptyPlaceHolder/EmptyPlaceHolder';
 
-function NumberWidget(props: NumberWidgetProps) {
+function NumberWidget(props: WidgetProps) {
+  const { id, label, query } = props;
+
+  const { data: fetchedData = [], isLoading, error } = useQuery({
+    queryKey: ['barChart', id],
+    queryFn: async () => {
+      return fetchCustomFakerData(query);
+    },
+    staleTime: 5 * 60 * 1000,
+  });
+
+  if (isLoading) return <EmptyPlaceHolder customMessage={`Loading ${label}...`} />;
+  if (error) return <EmptyPlaceHolder customMessage={`Error loading ${label}`} />;
+  if (!fetchedData?.length) return <EmptyPlaceHolder customMessage="No data available" />;
+  
   return (
     <Stack
       direction="row"
@@ -29,7 +41,7 @@ function NumberWidget(props: NumberWidgetProps) {
         variant="h2"
         sx={{ fontWeight: 500 }}
       >
-        {props.data.length}
+        {fetchedData.length}
       </Typography>
     </Stack>
   );
