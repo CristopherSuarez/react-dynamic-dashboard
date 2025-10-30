@@ -12,7 +12,7 @@ import {
 
 import GenericModal from './GenericModal';
 import { SIMPLE_FAKER_TYPES, type SimpleFakerType } from '../../services/fakerResources';
-import type { WidgetProps } from '../common/types';
+import type { WidgetProps } from '../../types/types';
 
 interface ImportWidgetModalProps {
   open: boolean;

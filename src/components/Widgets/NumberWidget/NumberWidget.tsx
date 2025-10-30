@@ -4,7 +4,7 @@ import NumbersOutlinedIcon from '@mui/icons-material/NumbersOutlined';
 import { Stack, Typography } from '@mui/material';
 
 import { fetchCustomFakerData } from '../../../services/fakerService';
-import type { WidgetProps } from '../../common/types';
+import type { WidgetProps } from '../../../types/types';
 import EmptyPlaceHolder from '../../EmptyPlaceHolder/EmptyPlaceHolder';
 
 function NumberWidget(props: WidgetProps) {

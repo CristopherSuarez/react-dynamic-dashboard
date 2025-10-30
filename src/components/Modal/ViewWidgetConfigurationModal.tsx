@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 
 import GenericModal from './GenericModal';
-import type { WidgetProps } from '../common/types';
+import type { WidgetProps } from '../../types/types';
 
 interface ViewWidgetConfigurationModalProps {
   open: boolean;
@@ -19,7 +19,6 @@ function ViewWidgetConfigurationModal({ open, handleClose, data }: ViewWidgetCon
     >
       <Box
         sx={{
-          width: '100%',
           maxHeight: 400,
           overflow: 'auto',
           backgroundColor: '#1e1e1e',
