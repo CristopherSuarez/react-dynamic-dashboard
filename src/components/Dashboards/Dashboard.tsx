@@ -62,30 +62,31 @@ function Dashboard({ editable = true, defaultData }: Dashboard) {
         value={viewMode}
         exclusive
         onChange={handleSetViewMode}
+        sx={{ gap: 2 }}
       >
-        {Object.values(ViewMode).map(({ label, value, icon: Icon, disabled }: ViewModeType) => (
-          <ToggleButton
+        <Box>
+          {Object.values(ViewMode).map(({ label, value, icon: Icon, disabled }: ViewModeType) => (
+            <ToggleButton
             key={label}
             value={value}
             aria-label={label}
-            disabled={disabled || false}
+              disabled={disabled || false}
+              >
+              <Icon />
+            </ToggleButton>
+          ))}
+        </Box>
+        {editable && (
+          <Button
+            variant="contained"
+            color="success"
+            endIcon={<FileUploadOutlinedIcon />}
+            onClick={() => setImportModalOpen(true)}
           >
-            <Icon/>
-          </ToggleButton>
-        ))}
-        {
-          editable &&
-            <Button
-              variant="contained"
-              color="success"
-              endIcon={<FileUploadOutlinedIcon />}
-              onClick={() => setImportModalOpen(true)}
-            >
-              import widget
-            </Button>
-        }
+            import widget
+          </Button>
+        )}
       </ToggleButtonGroup>
-
       <Grid container spacing={2}>
         {
           widgets.length ?
