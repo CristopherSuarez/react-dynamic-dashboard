@@ -33,8 +33,8 @@ src/
 ├── components/
 │ ├── Dashboards/
 │ ├── Widgets/
-│ ├── Modal/
-│ ├── Tabs/
+│ ├── Modal/ -> future common
+│ ├── Tabs/ -> future common
 │ └── common/
 ├── context/
 ├── config/
