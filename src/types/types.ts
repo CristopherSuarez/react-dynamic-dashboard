@@ -1,4 +1,4 @@
-import type { FakerSchema } from '../../services/fakerService';
+import type { FakerSchema } from '../services/fakerService';
 
 export interface WidgetProps {
   id?: unknown;

@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, type ReactNode } from 'react';
 
-import type { WidgetProps } from '../components/common/types';
+import type { WidgetProps } from '../types/types';
 
 interface WidgetsContextProps {
   widgets: WidgetProps[];

@@ -7,8 +7,8 @@ import { Box, Button, Grid, ToggleButton, ToggleButtonGroup, useMediaQuery, useT
 
 import { ViewMode, type ViewModeType } from '../../config/viewMode';
 import { useWidgets } from '../../context/WidgetsContext';
+import type { WidgetProps } from '../../types/types';
 import { NoFocusIconButton } from '../common/NoFocusIconButton';
-import type { WidgetProps } from '../common/types';
 import EmptyPlaceHolder from '../EmptyPlaceHolder/EmptyPlaceHolder';
 import ImportWidgetModal from '../Modal/ImportWidgetModal';
 import ViewWidgetConfigurationModal from '../Modal/ViewWidgetConfigurationModal';
@@ -16,7 +16,6 @@ import CardWidget from '../Widgets/CardWidget/CardWidget';
 import ChartWidget from '../Widgets/ChartWidget/ChartWidget';
 import NumberWidget from '../Widgets/NumberWidget/NumberWidget';
 import PieChartWidget from '../Widgets/PieChartWidget/PieChartWidget';
-
 
 interface Dashboard {
   editable?: boolean;
