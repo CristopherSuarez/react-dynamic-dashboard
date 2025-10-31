@@ -33,7 +33,7 @@ src/
 ├── components/
 │ ├── Dashboards/
 │ ├── Widgets/
-│ ├── Modal/ -> future common
+│ ├── Modals/ -> future common
 │ ├── Tabs/ -> future common
 │ └── common/
 ├── context/
@@ -49,7 +49,7 @@ src/
 
 ### Clone the repository
 ```bash
-git clone https://github.com/your-username/react-dynamic-dashboard.git
+git clone https://github.com/CristopherSuarez/react-dynamic-dashboard.git
 cd react-dynamic-dashboard
 
 npm install
